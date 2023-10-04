@@ -28,7 +28,8 @@ class DataGuiaBinServices extends ChangeNotifier {
       if (sincronizo == 0) {
         //si fue sincronizado no lo considero
         final response = await http.post(
-            Uri.parse('http://10.20.4.38:8077/api-app-control-time/binesguia'),
+            //10.20.4.173:8077 Servidor Desarrollo
+            Uri.parse('http://10.20.4.173:8077/api-app-control-time/binesguia'),
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
             },
@@ -61,7 +62,8 @@ class DataGuiaBinServices extends ChangeNotifier {
   Future insertGuiaProcesada(String nroguia, String opcion) async {
     //TODO : Validar que exista conexion con el api
     final response = await http.post(
-        Uri.parse('http://10.20.4.38:8077/api-app-control-time/binesguia'),
+        //10.20.4.173:8077 Servidor Desarrollo
+        Uri.parse('http://10.20.4.173:8077/api-app-control-time/binesguia'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },

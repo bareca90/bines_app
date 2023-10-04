@@ -14,7 +14,8 @@ class DataGuiasDayServices extends ChangeNotifier {
     loadGuiasDay();
   }
   final String _baseUrl =
-      'http://10.20.4.38:8077/api-app-control-time/dataguiasdia';
+      //10.20.4.173:8077 Servidor Desarrollo
+      'http://10.20.4.173:8077/api-app-control-time/dataguiasdia';
   Future<List<AssiggrModel>> loadGuiasDay() async {
     isLoading = true;
     //notificamos  a otro cualquier otro widget que se desea
@@ -62,7 +63,8 @@ class DataGuiasDayServices extends ChangeNotifier {
           "nroguia": guias['nro_guia'],
           "opcion": "BAGR"
         };
-        final uri = Uri.http('10.20.4.38:8077',
+        //10.20.4.173:8077 Servidor Desarrollo
+        final uri = Uri.http('10.20.4.173:8077',
             '/api-app-control-time/obtenerbinesguia', queryParameters);
         //final headers = {HttpHeaders.contentTypeHeader: 'application/json'};
         final responseBin = await http.get(

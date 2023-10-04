@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 //class DataGuiasRegServices extends ChangeNotifier {
 class DataGuiasRegServices {
   List<RegisteredGuias> listadoGrReg = [];
-  final serverport = '10.20.4.38:8077';
+  final serverport = '10.20.4.173:8077'; //Servidor Desarrollo
   bool insertados = false;
   DataGuiasRegServices();
 
@@ -146,7 +146,6 @@ class DataGuiasRegServices {
 
       /* BinGrAsignado()
               .updateBinesSincronizados(nroguia, 0, 1, nrobin); */
-
     } else {
       print('Cod Error No se Inserto Registros');
     }
@@ -179,12 +178,10 @@ class DataGuiasRegServices {
         //GuiasReg
         /* final borradosCab = await RegisteredGuiasProvider()
             .borrarRegGuiasxGuia(tipoproceso, nroguia); */
-
       }
       if (relacionTabla == 'DET') {
         // se Eliminara e Insertara los registros en el detalle
         //BinReg
-
       }
       print(decodedResp[0]['descmsg']);
 
@@ -193,7 +190,6 @@ class DataGuiasRegServices {
 
       /* BinGrAsignado()
               .updateBinesSincronizados(nroguia, 0, 1, nrobin); */
-
     } else {
       print('Cod Error No se Inserto Registros');
     }
