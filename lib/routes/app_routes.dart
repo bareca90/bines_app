@@ -33,7 +33,7 @@ class AppRoutes {
         icon: Icons.home), */
     MenuOptions(
         route: 'registerbin',
-        name: 'Registrar Bin',
+        name: 'Registrar Guía Lista',
         screen: const AssigmentScreen(),
         icon: Icons.app_registration),
     MenuOptions(

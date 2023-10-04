@@ -20,7 +20,7 @@ class AssigmentBinCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: 10, bottom: 15),
         width: double.infinity,
-        height: 80,
+        height: 90,
         decoration: _cardBorders(),
         child: Row(
           children: [

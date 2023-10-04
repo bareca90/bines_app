@@ -17,7 +17,7 @@ class ListSearchGuias extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: 5, bottom: 5),
         width: double.infinity,
-        height: 56,
+        height: 60,
         decoration: _cardBorders(),
         child: Row(
           children: [
