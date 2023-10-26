@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:bines_app/providers/providers.dart';
 import 'package:bines_app/ui/imput_decorations.dart';
 import 'package:bines_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:bines_app/services/valida_login_services.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -32,7 +35,8 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 50),
-          TextButton(
+          //TODO Se Elimina el Registrar Cuenta hasta los siguientes entregables
+          /* TextButton(
             onPressed: () {
               Navigator.pushReplacementNamed(context, 'register');
             },
@@ -49,7 +53,7 @@ class LoginScreen extends StatelessWidget {
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
             ),
-          )
+          ) */
         ],
       ),
     )));
@@ -76,20 +80,21 @@ class _LoginForm extends StatelessWidget {
               autocorrect: false,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecorations.authInputDecoration(
-                  hintText: 'info@informatica.como',
-                  labelText: 'Correo Electrònico',
+                  hintText: 'usuario-cedula',
+                  labelText: 'Usuario/Cedula',
                   prefixIcon: Icons.alternate_email_sharp),
               //Tomar os valores de las cajas de Texto
               onChanged: (value) => loginForm.email = value,
               //permite realizar validaciones
               validator: (value) {
-                String pattern =
-                    r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                String pattern = r'^[a-zA-Z0-9]+$';
+                /* r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'; */
+
                 RegExp regExp = RegExp(pattern);
 
                 return regExp.hasMatch(value ?? '')
                     ? null
-                    : 'EL Valor ingreado no luce como un correo';
+                    : 'EL Valor ingreado no luce como un usuario o cedula';
               },
             ),
             const SizedBox(
@@ -136,9 +141,30 @@ class _LoginForm extends StatelessWidget {
                         await Future.delayed(const Duration(seconds: 3));
                         //TODO Validar si el login es corrrecto
                         loginForm.isLoading = false;
-                        //Permite acceder a la pantalla siguiente sin que permita regresar a la anaterior
-                        // ignore: use_build_context_synchronously
-                        Navigator.pushReplacementNamed(context, 'home');
+
+                        final response =
+                            await ValidaLoginServices.validarUsuario(
+                                loginForm.email, loginForm.password);
+
+                        final jsonData = await jsonDecode(response.body);
+
+                        print('Respuesta  ${jsonData}');
+                        if (jsonData['codmsg'] == 200) {
+                          // El login fue exitoso
+                          //Permite acceder a la pantalla siguiente sin que permita regresar a la anaterior
+                          // ignore: use_build_context_synchronously
+                          Navigator.pushReplacementNamed(context, 'home');
+                        } else {
+                          // El login falló
+                          // Mostrar un mensaje de error al usuario
+                          const snackBar = SnackBar(
+                            content: Text(
+                                'El usuario o la contraseña no son correctos'),
+                            duration: Duration(seconds: 2),
+                          );
+                          // ignore: use_build_context_synchronously
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
                       },
                 child: Container(
                   padding:

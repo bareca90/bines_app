@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'login',
       routes: {
         'login': (_) => const LoginScreen(), //Pantalla de Logueo
-        'register': (_) => const RegisterScreen(), //Registro de Nuevo Uuario
+        /* 'register': (_) => const RegisterScreen(), */ //Registro de Nuevo Uuario
         'home': (_) => const HomeScreen(), //Pagina Principal lista de Opciones
         'registerbin': (_) =>
             const AssigmentScreen(), //Registro de Bines Paso 1
