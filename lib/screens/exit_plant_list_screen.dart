@@ -1,5 +1,6 @@
 import 'package:bines_app/providers/providers.dart';
 import 'package:bines_app/screens/screens.dart';
+import 'package:bines_app/services/data_guias_day_services.dart';
 
 /* import 'package:bines_app/screens/search_guias_delegate.dart';
 import 'package:bines_app/services/services.dart'; */
@@ -14,66 +15,48 @@ class ExitPlantListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     /* final listaGuiasAsignadas =
         Provider.of<AssiggrListProvider>(context, listen: false); */
+    final listaGuiasServices = Provider.of<DataGuiasDayServices>(context);
 
-    /* final listaGuiasServices =
-        Provider.of<ServicesProvider>(context, listen: false);
-    listaGuiasServices.llamarApiGuiasRegistradas('OGCE'); */
-
-    final listadoGR = Provider.of<RegisteredGuiasProvider>(context);
-    final guias = listadoGR.registrados;
-    //listadoGR.cargarGrRegistradas('RSP');
-
-    /* listaGuiasServices.loadGuiasRegistradas('OGCE'); */
-
-    /* final listaGuiasAsignadas = Provider.of<AssiggrListProvider>(context);
+    final listaGuiasAsignadas = Provider.of<AssiggrListProvider>(context);
     listaGuiasAsignadas.cargarGrAsignadas();
- */
+
     return Scaffold(
       body: Scaffold(
         appBar: AppBar(
-          title: const Text('Salida - Planta'),
+          title: const Text('Salida de Planta'),
           actions: [
             IconButton(
-                onPressed: () async {
+                onPressed: () {
                   showSearch(
                       context: context,
-                      delegate: SearchGuiasRegDelegate(
-                          listaGuiasAsignadas: listadoGR));
+                      delegate: SearchGuiasDelegate(
+                          listaGuiasAsignadas: listaGuiasAsignadas));
                 },
                 icon: const Icon(Icons.search))
           ],
         ),
-        body:
-            // Container()
-            ListView.builder(
-                //itemCount: productsServices.productos.length,
-                /* itemCount: listaGuiasAsignadas.asignados.length, */
-                itemCount: listadoGR.registrados.length,
-                itemBuilder: (BuildContext context, int indice) =>
-                    GestureDetector(
-                        // TODO Aqui navego a la pantalla de Productos
-                        onTap: () {
-                          /* productsServices.selectedProduct =
+        body: ListView.builder(
+            //itemCount: productsServices.productos.length,
+            itemCount: listaGuiasAsignadas.asignados.length,
+            itemBuilder: (BuildContext context, int indice) => GestureDetector(
+                // TODO Aqui navego a la pantalla de Productos
+                onTap: () {
+                  /* productsServices.selectedProduct =
                       productsServices.productos[indice].copy();
                   Navigator.pushNamed(context, 'product'); */
-                          final listaBinGuiaReg =
-                              Provider.of<RegisteredBinGuiasProvider>(context,
-                                  listen: false);
+                  listaGuiasAsignadas.guiaSeleccionada =
+                      listaGuiasAsignadas.asignados[indice].copy();
 
-                          final nroguia = listadoGR.registrados[indice].nroguia;
-                          final tipoproceso =
-                              listadoGR.registrados[indice].tipoproceso;
-                          listaBinGuiaReg.cargarBinAsignadasReg(
-                              nroguia, tipoproceso);
-
-                          listadoGR.guiaSeleccionadaReg =
-                              listadoGR.registrados[indice].copy();
-                          Navigator.pushNamed(context, 'binsalplan');
-                        },
-                        child: GuiasListReg(
-                          registradas: listadoGR.registrados[indice],
-                          //product: productsServices.productos[indice],
-                        ))),
+                  final nroguia = listaGuiasAsignadas.asignados[indice].nroguia;
+                  final listaBinGuiaAsignada =
+                      Provider.of<BinGrAsignado>(context, listen: false);
+                  listaBinGuiaAsignada.cargarBinAsignadas(nroguia);
+                  Navigator.pushNamed(context, 'asigbin');
+                },
+                child: AssigmentBinCard(
+                  asignados: listaGuiasAsignadas.asignados[indice],
+                  //product: productsServices.productos[indice],
+                ))),
       ),
     );
   }

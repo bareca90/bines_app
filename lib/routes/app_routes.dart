@@ -25,17 +25,11 @@ class AppRoutes {
   */
   static const initialRoute = 'HomeScreen';
   static final menuOptions = <MenuOptions>[
-    // TODO: Borrar Home
     /* MenuOptions(
-        route: 'home',
-        name: 'Home Screen',
-        screen: const HomeScreen(),
-        icon: Icons.home), */
-    MenuOptions(
         route: 'registerbin',
         name: 'Registrar Guía Lista',
         screen: const AssigmentScreen(),
-        icon: Icons.app_registration),
+        icon: Icons.app_registration), */
     MenuOptions(
         route: 'exitplant',
         name: 'Registrar Salida Planta',
@@ -48,7 +42,7 @@ class AppRoutes {
         icon: Icons.location_on_rounded),
     MenuOptions(
         route: 'closebin',
-        name: 'Registrar Cierre de Bin',
+        name: 'Registrar Móvil Listo',
         screen: const CloseBinListScreen(),
         icon: Icons.propane_tank),
     MenuOptions(
@@ -61,7 +55,7 @@ class AppRoutes {
         name: 'Registrar Llegada a Planta',
         screen: const ArrivePlantListScreen(),
         icon: Icons.factory),
-    MenuOptions(
+    /* MenuOptions(
         route: 'receptionbin',
         name: 'Registrar Llegada Recepciòn',
         screen: const ReceptionListScreen(),
@@ -70,7 +64,7 @@ class AppRoutes {
         route: 'receivebin',
         name: 'Registrar Recibido Recepciòn',
         screen: const SupllyHopperListScreen(),
-        icon: Icons.flip),
+        icon: Icons.flip), */
 
     /* MenuOptions(
         route: 'ListView1',

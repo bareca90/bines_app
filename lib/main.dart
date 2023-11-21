@@ -41,8 +41,8 @@ class MyApp extends StatelessWidget {
         'login': (_) => const LoginScreen(), //Pantalla de Logueo
         /* 'register': (_) => const RegisterScreen(), */ //Registro de Nuevo Uuario
         'home': (_) => const HomeScreen(), //Pagina Principal lista de Opciones
-        'registerbin': (_) =>
-            const AssigmentScreen(), //Registro de Bines Paso 1
+        /* 'registerbin': (_) =>
+            const AssigmentScreen(), //Registro de Bines Paso 1 */
         'exitplant': (_) =>
             const ExitPlantListScreen(), //Lista de Guias -  Registro Salida de Planta
         'arrivefarm': (_) =>
@@ -53,10 +53,10 @@ class MyApp extends StatelessWidget {
             const ExitFarmListScreen(), //Lista Guia Salida de Granja
         'arriveplant': (_) =>
             const ArrivePlantListScreen(), //Lista Guia  - Llegada a planta
-        'receptionbin': (_) =>
+        /*  'receptionbin': (_) =>
             const ReceptionListScreen(), //Lista Guias Llegada Recepcion
         'receivebin': (_) =>
-            const SupllyHopperListScreen(), //Lista Guias - Recibido Recepcion
+            const SupllyHopperListScreen(), */ //Lista Guias - Recibido Recepcion
         'asigbin': (_) =>
             const AssigmentBinScreen(), //Listado de Bines Asignados a las guias Paso 1
         'binsalplan': (_) =>
