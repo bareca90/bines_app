@@ -14,12 +14,15 @@ class DBProvider {
       // `path` package is best practice to ensure the path is correctly
       // constructed for each platform.
 
-      join(await getDatabasesPath(), 'AppBinGuia.db'),
+      join(await getDatabasesPath(), 'AppGuiasCmp.db'),
       // When the database is first created, create a table to store dogs.
       onCreate: (db, version) {
         // Run the CREATE TABLE statement on the database.
         db.execute(
           'CREATE TABLE Assiggr(nroguia TEXT PRIMARY KEY, fecha TEXT, kg REAL,piscina TEXT,cant INT,sincronizado INT,activo INT) ',
+        );
+        db.execute(
+          'CREATE TABLE TiempoGuias(tipoproceso TEXT,nroguia TEXT, fecha TEXT, kg REAL,piscina TEXT,cant INT,placa TEXT,registratiempo TEXT,cedula TEXT,sincronizado INT,activo INT,fechahorareg TEXT,PRIMARY KEY (tipoproceso, nroguia)) ',
         );
         db.execute(
           'CREATE TABLE GuiasReg(tipoproceso TEXT,nroguia TEXT, fechaguia TEXT, kg REAL,piscina TEXT,cantescaneada INT,activo INT,sincronizado INT,PRIMARY KEY (tipoproceso, nroguia)) ',
@@ -56,7 +59,7 @@ class DBProvider {
     //
     // In this case, replace any previous data.
     final resp = await db.insert(
-      'Assiggr',
+      'TiempoGuias',
       asignadas.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
@@ -164,17 +167,18 @@ class DBProvider {
   //----------------------------------
   //Eliminacion de las guias q no estan sincronizadas que vinieron desde el API
   //----------------------------------
-  Future borrarGuiasPesca(String nroguia) async {
+  Future borrarGuiasPesca(String tipoproceso) async {
     // Get a reference to the database.
     final db = await databaseRead;
 
     //TODO : APlicar COndicion para q borre las que no han sido sincronizadas
     final res = await db.delete(
-      'Assiggr',
+      'TiempoGuias',
+      where: 'tipoproceso = ? ',
       // Ensure that the Dog has a matching id.
       /* where: 'nroguia = ? and sincronizado = 0 ', */
       // Pass the Dog's id as a whereArg to prevent SQL injection.
-      /* whereArgs: [nroguia], */
+      whereArgs: [tipoproceso],
     );
 
     return res;

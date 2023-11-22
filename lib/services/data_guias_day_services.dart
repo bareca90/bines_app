@@ -13,16 +13,26 @@ class DataGuiasDayServices extends ChangeNotifier {
   DataGuiasDayServices() {
     loadGuiasDay();
   }
-  final String _baseUrl =
-      //10.20.4.173:8077 Servidor Desarrollo
-      'http://10.20.4.173:8077/api-app-control-time/dataguiasdia';
   Future<List<AssiggrModel>> loadGuiasDay() async {
     isLoading = true;
     //notificamos  a otro cualquier otro widget que se desea
     notifyListeners();
-
-    final response = await http.get(Uri.parse(_baseUrl));
-    final List<dynamic> listguiasMap = convert.jsonDecode(response.body);
+    final queryParameters = {
+      "nroguia": "",
+      "opcion": "GUIAPESCAD",
+      "usuario": ""
+    };
+    final uri = Uri.http('10.20.4.173:8077',
+        '/api-app-control-time/obtenerguias', queryParameters);
+    final responseGuias = await http.get(
+      uri,
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+    /* final List<dynamic> listGuiasBinMap =convert.jsonDecode(responseGuias.body); */
+    /* final response = await http.get(Uri.parse(_baseUrl)); */
+    final List<dynamic> listguiasMap = convert.jsonDecode(responseGuias.body);
     if (listguiasMap.isNotEmpty) {
       //Borramos los datos de las tablas no sincronziadas
       //TODO : Borrar los datos de las guias no sincronizadas
@@ -39,14 +49,19 @@ class DataGuiasDayServices extends ChangeNotifier {
         final int sincronizado = int.parse(guias['sincronizado'].toString());
         final int activo = int.parse(guias['activo'].toString());
         final nuevaGuiaPesca = AssiggrModel(
-            nroguia: guias['nro_guia'],
-            fecha: guias['fec_pesc'],
-            /* kg: double.parse(guias['can_kg']), */
-            kg: kg,
-            piscina: guias['nro_pisc'],
-            cant: cantbin,
-            sincronizado: sincronizado,
-            activo: activo);
+          tipoproceso: guias['tipoproceso'],
+          nroguia: guias['nro_guia'],
+          fecha: guias['fec_pesc'],
+          kg: kg,
+          piscina: guias['nro_pisc'],
+          cant: cantbin,
+          placa: guias['placa'],
+          registratiempo: guias['registratiempo'],
+          cedula: guias['cedula'],
+          sincronizado: sincronizado,
+          activo: activo,
+          fechahorareg: guias['fechahorareg'],
+        );
         nuevaGuiaPesca.nroguia =
             await DBProvider.db.insertAsiganadas(nuevaGuiaPesca);
         /*
@@ -59,14 +74,12 @@ class DataGuiasDayServices extends ChangeNotifier {
             Consumimos el Api 
           --------------------------------------------
         */
-        final queryParameters = {
+        /* final queryParameters = {
           "nroguia": guias['nro_guia'],
           "opcion": "BAGR"
         };
-        //10.20.4.173:8077 Servidor Desarrollo
         final uri = Uri.http('10.20.4.173:8077',
             '/api-app-control-time/obtenerbinesguia', queryParameters);
-        //final headers = {HttpHeaders.contentTypeHeader: 'application/json'};
         final responseBin = await http.get(
           uri,
           headers: <String, String>{
@@ -74,7 +87,7 @@ class DataGuiasDayServices extends ChangeNotifier {
           },
         );
         final List<dynamic> listGuiasBinMap =
-            convert.jsonDecode(responseBin.body);
+            convert.jsonDecode(responseBin.body); */
 
         /*
           --------------------------------------------
@@ -88,7 +101,7 @@ class DataGuiasDayServices extends ChangeNotifier {
           Recorre el json que viene desde el Api de Bines
           --------------------------------------------
         */
-        for (Map<String, dynamic> guiasBin in listGuiasBinMap) {
+        /* for (Map<String, dynamic> guiasBin in listGuiasBinMap) {
           final nuevoBinGuia = BinesGrAsigModel(
               nroguia: guiasBin['nroguia'],
               nrobin: guiasBin['nrobin'],
@@ -98,9 +111,9 @@ class DataGuiasDayServices extends ChangeNotifier {
           nuevoBinGuia.nrobin =
               await DBProvider.db.insertBinGrAsiganadas(nuevoBinGuia);
 
-          /* final double kg = double.parse(guiasBin['fechahora'].toString()); */
-        }
-        print('Guia Bin ${responseBin.body}');
+          
+        } */
+        /* print('Guia Bin ${responseBin.body}'); */
 
         insertados = true;
         notifyListeners();

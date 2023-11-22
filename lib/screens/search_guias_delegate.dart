@@ -28,13 +28,18 @@ class SearchGuiasDelegate extends SearchDelegate {
           close(
               context,
               AssiggrModel(
+                  tipoproceso: '',
                   nroguia: '',
                   fecha: '',
                   kg: 0,
                   piscina: '',
                   cant: 0,
+                  placa: '',
+                  registratiempo: '',
+                  cedula: '',
                   sincronizado: 0,
-                  activo: 0));
+                  activo: 0,
+                  fechahorareg: ''));
         },
         icon: const Icon(Icons.arrow_back_ios));
   }
