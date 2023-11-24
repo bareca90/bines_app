@@ -36,7 +36,7 @@ class DataGuiasDayServices extends ChangeNotifier {
     if (listguiasMap.isNotEmpty) {
       //Borramos los datos de las tablas no sincronziadas
       //TODO : Borrar los datos de las guias no sincronizadas
-      await DBProvider.db.borrarGuiasPesca('');
+      await DBProvider.db.borrarGuiasPesca('', 'GUIAPESCAD');
       //Recorremos el Json y Realizamos el Insert
       for (Map<String, dynamic> guias in listguiasMap) {
         /*
@@ -94,7 +94,7 @@ class DataGuiasDayServices extends ChangeNotifier {
           Borrar los datos de las guias 
           --------------------------------------------
         */
-        await DBProvider.db.borrarBinesGuiasSinc(guias['nro_guia']);
+        /* await DBProvider.db.borrarBinesGuiasSinc(guias['nro_guia']); */
 
         /*
           --------------------------------------------

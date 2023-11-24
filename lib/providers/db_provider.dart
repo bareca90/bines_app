@@ -138,11 +138,12 @@ class DBProvider {
   //Consulta de Guìas de Pesca que vinieron desde el API
   //----------------------------------
   // A method that retrieves all the dogs from the dogs table.
-  Future<List<AssiggrModel>?> consultaGrAsignadas() async {
+  Future<List<AssiggrModel>?> consultaGrAsignadas(cedula, tipo) async {
     // Get a reference to the database.
     final db = await databaseRead;
 
-    final res = await db.query('Assiggr', where: '1 = 1 ');
+    final res = await db
+        .query('TiempoGuias', where: 'tipoproceso=? ', whereArgs: [tipo]);
 
     return res.isNotEmpty
         ? res.map((e) => AssiggrModel.fromJson(e)).toList()
@@ -167,7 +168,7 @@ class DBProvider {
   //----------------------------------
   //Eliminacion de las guias q no estan sincronizadas que vinieron desde el API
   //----------------------------------
-  Future borrarGuiasPesca(String tipoproceso) async {
+  Future borrarGuiasPesca(cedula, tipoproceso) async {
     // Get a reference to the database.
     final db = await databaseRead;
 

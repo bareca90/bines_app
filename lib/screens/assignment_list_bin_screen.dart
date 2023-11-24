@@ -15,7 +15,8 @@ class AssigmentScreen extends StatelessWidget {
     final listaGuiasServices = Provider.of<DataGuiasDayServices>(context);
 
     final listaGuiasAsignadas = Provider.of<AssiggrListProvider>(context);
-    listaGuiasAsignadas.cargarGrAsignadas();
+    listaGuiasAsignadas.cargarGrAsignadas(
+        '', 'GUIAPESCAD'); //cedula y tipo de proceso a consultar
 
     return Scaffold(
       body: Scaffold(

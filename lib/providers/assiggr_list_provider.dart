@@ -29,15 +29,15 @@ class AssiggrListProvider extends ChangeNotifier {
     return nuevaGuiaPesca;
   }
 
-  cargarGrAsignadas() async {
-    final asignados = await DBProvider.db.consultaGrAsignadas();
+  cargarGrAsignadas(cedula, tipo) async {
+    final asignados = await DBProvider.db.consultaGrAsignadas(cedula, tipo);
     /* print(asignados); */
     this.asignados = [...?asignados];
     notifyListeners();
   }
 
-  borrarGuiasPesca(String nroguia) async {
-    await DBProvider.db.borrarGuiasPesca(nroguia);
-    cargarGrAsignadas();
+  borrarGuiasPesca(cedula, tipo) async {
+    await DBProvider.db.borrarGuiasPesca(cedula, tipo);
+    cargarGrAsignadas(cedula, tipo);
   }
 }

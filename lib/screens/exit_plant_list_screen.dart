@@ -16,9 +16,10 @@ class ExitPlantListScreen extends StatelessWidget {
     /* final listaGuiasAsignadas =
         Provider.of<AssiggrListProvider>(context, listen: false); */
     final listaGuiasServices = Provider.of<DataGuiasDayServices>(context);
-
+    const String cedula = '1206702175';
+    const String tipo = 'GUIAPESCAD';
     final listaGuiasAsignadas = Provider.of<AssiggrListProvider>(context);
-    listaGuiasAsignadas.cargarGrAsignadas();
+    listaGuiasAsignadas.cargarGrAsignadas(cedula, tipo);
 
     return Scaffold(
       body: Scaffold(
