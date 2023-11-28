@@ -16,8 +16,8 @@ class ExitPlantListScreen extends StatelessWidget {
     /* final listaGuiasAsignadas =
         Provider.of<AssiggrListProvider>(context, listen: false); */
     final listaGuiasServices = Provider.of<DataGuiasDayServices>(context);
-    const String cedula = '1206702175';
-    const String tipo = 'GUIAPESCAD';
+    const String cedula = '1234567890';
+    const String tipo = 'GUIAPESCAD'; //Obtener Guias del Día
     final listaGuiasAsignadas = Provider.of<AssiggrListProvider>(context);
     listaGuiasAsignadas.cargarGrAsignadas(cedula, tipo);
 
@@ -49,10 +49,11 @@ class ExitPlantListScreen extends StatelessWidget {
                       listaGuiasAsignadas.asignados[indice].copy();
 
                   final nroguia = listaGuiasAsignadas.asignados[indice].nroguia;
-                  final listaBinGuiaAsignada =
+                  //Se COmenta esta Linea que invocaba a la pantalla para registrar bines por guias
+                  /* final listaBinGuiaAsignada =
                       Provider.of<BinGrAsignado>(context, listen: false);
                   listaBinGuiaAsignada.cargarBinAsignadas(nroguia);
-                  Navigator.pushNamed(context, 'asigbin');
+                  Navigator.pushNamed(context, 'asigbin'); */
                 },
                 child: AssigmentBinCard(
                   asignados: listaGuiasAsignadas.asignados[indice],

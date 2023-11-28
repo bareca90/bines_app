@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     final menuOptions = AppRoutes.menuOptions;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro de Bines'),
+        title: const Text('Control - Pesca (CMP)'),
         //agregar boton para logout
         actions: [
           IconButton(

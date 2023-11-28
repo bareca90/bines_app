@@ -20,13 +20,13 @@ class AssigmentBinCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: 10, bottom: 15),
         width: double.infinity,
-        height: 90,
+        height: 110,
         decoration: _cardBorders(),
         child: Row(
           children: [
             const Padding(padding: EdgeInsets.only(left: 10)),
-            const Icon(Icons.app_registration,
-                size: 25, color: AppTheme.primary),
+            /* const Icon(Icons.app_registration,
+                size: 25, color: AppTheme.primary), */
             Expanded(
               //flex: 0,
               child: Container(
@@ -65,12 +65,23 @@ class AssigmentBinCard extends StatelessWidget {
                       color: Colors.white,
                     ),
                     Text(
-                      'Cant. :',
+                      'Placa :',
                       style: TextStyle(
                           fontSize: tamanio,
                           color: AppTheme.second,
                           fontWeight: FontWeight.bold),
                     ),
+                    /* const Divider(
+                      height: 5,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      'Placa :',
+                      style: TextStyle(
+                          fontSize: tamanio,
+                          color: AppTheme.second,
+                          fontWeight: FontWeight.bold),
+                    ), */
                   ],
                 ),
               ),
@@ -114,7 +125,7 @@ class AssigmentBinCard extends StatelessWidget {
                       color: Colors.white,
                     ),
                     Text(
-                      asignados.cant.toString(),
+                      asignados.placa.toString(),
                       style: TextStyle(
                           fontSize: tamanio,
                           color: AppTheme.primary,
@@ -150,6 +161,17 @@ class AssigmentBinCard extends StatelessWidget {
                           color: AppTheme.second,
                           fontWeight: FontWeight.bold),
                     ),
+                    const Divider(
+                      height: 5,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      'F/H Reg :',
+                      style: TextStyle(
+                          fontSize: tamanio,
+                          color: AppTheme.second,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
               ),
@@ -175,6 +197,17 @@ class AssigmentBinCard extends StatelessWidget {
                     ),
                     Text(
                       asignados.piscina,
+                      style: TextStyle(
+                          fontSize: tamanio,
+                          color: AppTheme.primary,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const Divider(
+                      height: 5,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      asignados.fechahorareg,
                       style: TextStyle(
                           fontSize: tamanio,
                           color: AppTheme.primary,
