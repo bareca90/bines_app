@@ -140,7 +140,9 @@ class AssigmentBinScreen extends StatelessWidget {
                     Provider.of<DataGuiaBinServices>(context, listen: false)
                         .insertGuiaProcesada(
                             listaGuiasAsignadas.guiaSeleccionada.nroguia,
-                            'PBG');
+                            'PBG',
+                            '',
+                            '');
                     /*  listaGuiasServices.insertBinGuias(listaBinGuiaAsignada);
                     if (listaGuiasServices.isLoading) {
                       const LoadingScreen();

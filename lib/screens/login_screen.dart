@@ -147,8 +147,6 @@ class _LoginForm extends StatelessWidget {
                                 loginForm.email, loginForm.password);
 
                         final jsonData = await jsonDecode(response.body);
-
-                        print('Respuesta  ${jsonData}');
                         if (jsonData['codmsg'] == 200) {
                           // El login fue exitoso
                           //Permite acceder a la pantalla siguiente sin que permita regresar a la anaterior

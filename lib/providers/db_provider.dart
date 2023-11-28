@@ -348,6 +348,19 @@ class DBProvider {
   }
 
   //----------------------------------
+  //Actualizar Tabla TiempoGuias para saber que esta sincronizada
+  //----------------------------------
+  Future actualizaGuiaSincronizada(
+      String nroguia, int activo, int sincronizado, String tipo) async {
+    // Get a reference to the database.
+    final db = await databaseRead;
+    final actualizado = await db.update(
+        'TiempoGuias', {'sincronizado': sincronizado, 'activo': activo},
+        where: 'nroguia = ? and tipoproceso = ? ', whereArgs: [nroguia, tipo]);
+    return actualizado;
+  }
+
+  //----------------------------------
   //Actualizar Tabla Asiggr para saber que esta sincronizada
   //----------------------------------
   Future actSincGrBinesReg(String nroguia, int activo, int sincronizado,

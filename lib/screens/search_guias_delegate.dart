@@ -93,8 +93,9 @@ class _ListDetailSearch extends StatelessWidget {
               final listaBinGuiaAsignada =
                   Provider.of<BinGrAsignado>(context, listen: false);
               listaBinGuiaAsignada.cargarBinAsignadas(nroguia);
-              /* Navigator.pushNamed(context, 'asigbin'); */
-              Navigator.pushReplacementNamed(context, 'asigbin');
+
+              //Aqui se Comenta la Invocación a la pantalla de Bines
+              /* Navigator.pushReplacementNamed(context, 'asigbin'); */
             },
             child: ListSearchGuias(
               /* asignados: listaGuiasAsignadas.asignados[indice], */

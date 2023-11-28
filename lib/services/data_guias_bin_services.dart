@@ -1,11 +1,9 @@
-import 'dart:convert' as convert;
 import 'dart:convert';
 /* import 'dart:html'; */
 /* import 'package:bines_app/models/models.dart'; */
 import 'package:bines_app/providers/providers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:bines_app/models/models.dart';
 
 class DataGuiaBinServices extends ChangeNotifier {
   List<BinesGrAsigModel> binAsignadosGuias = [];
@@ -59,27 +57,29 @@ class DataGuiaBinServices extends ChangeNotifier {
   }
 
   //listaBinGuiaAsignada.cargarBinAsignadas(nroguia);
-  Future insertGuiaProcesada(String nroguia, String opcion) async {
+  Future insertGuiaProcesada(
+      String nroguia, String opcion, String tipo, String usuario) async {
     //TODO : Validar que exista conexion con el api
+    //si fue sincronizado no lo considero
     final response = await http.post(
         //10.20.4.173:8077 Servidor Desarrollo
-        Uri.parse('http://10.20.4.173:8077/api-app-control-time/binesguia'),
+        Uri.parse('http://10.20.4.173:8077/api-app-control-time/regtiempoguia'),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(<String, dynamic>{
           "opcion": opcion,
           "nroguia": nroguia,
-          "nrobin": 0,
-          "fechahra": ''
+          "usuario": usuario
         }));
 
     final List<dynamic> decodedResp = json.decode(response.body);
     final dynamic cod = decodedResp[0]['codmsg'];
+    print('Datos del json devuelto en el api $decodedResp');
     if (cod == 200) {
-      //TODO Revisar que se produzca
-      final binesAct = await BinGrAsignado().updateEstadoGuia(nroguia, 0);
-      print('Realizo el Ingreso en la Tabla');
+      final binesAct =
+          await BinGrAsignado().updateGuiaSincronizada(nroguia, 0, 1, tipo);
+
       notifyListeners();
     } else {
       print('Cod Error ');

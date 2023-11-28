@@ -239,29 +239,6 @@ class AssigmentBinCard extends StatelessWidget {
             ) */
           ],
         ),
-        /* child: Stack(alignment: Alignment.bottomLeft, children: [
-          //_BackgroundImage(product.picture),
-          // const _BackgroundImage(null),
-          const _ProductsDetails(
-            //tittle: product.name,
-            tittle: 'HC4525',
-            //subtittle: product.id.toString(),
-            subtittle: 'Subtitulo',
-            //price: product.price,
-            price: 0.00,
-          ),
-          const Positioned(
-              top: 0,
-              right: 0,
-              child: _PriceTab(
-                //price: product.price,
-                price: 1.20,
-              )),
-          //Este se Mostrara de Manera Condicional
-          //if (!product.available) //si no esta disponible
-          if (variable) //si no esta disponible
-            const Positioned(top: 0, left: 0, child: _Disponible())
-        ]), */
       ),
     );
   }

@@ -45,6 +45,16 @@ class BinGrAsignado extends ChangeNotifier {
     notifyListeners();
   }
 
+  updateGuiaSincronizada(
+      String nroguia, int activo, int sincronizado, String tipo) async {
+    final actualizado = await DBProvider.db
+        .actualizaGuiaSincronizada(nroguia, activo, sincronizado, tipo);
+    this.actualizado = actualizado;
+
+    cargarBinAsignadas(nroguia);
+    notifyListeners();
+  }
+
   updateBinesSincronizados(
       String nroguia, int activo, int sincronizado, int nrobin) async {
     final actualizado = await DBProvider.db
