@@ -51,12 +51,17 @@ class ExitPlantListScreen extends StatelessWidget {
                       listaGuiasAsignadas.asignados[indice].copy();
 
                   final nroguia = listaGuiasAsignadas.asignados[indice].nroguia;
-                  _showDialogInsertBines(
-                    context,
-                    nroguia,
-                    tipo,
-                    cedula,
-                  );
+                  if (listaGuiasAsignadas.asignados[indice].activo == 1) {
+                    _showDialogInsertBines(
+                      context,
+                      nroguia,
+                      tipo,
+                      cedula,
+                    );
+                  } else {
+                    _showDialogMsg(context,
+                        'Lo Sentimos la Guía Seleccionada ya posee Registro de fecha y hora ');
+                  }
 
                   //Se COmenta esta Linea que invocaba a la pantalla para registrar bines por guias
                   /* final listaBinGuiaAsignada =
@@ -73,12 +78,7 @@ class ExitPlantListScreen extends StatelessWidget {
   }
 
   Future<dynamic> _showDialogInsertBines(
-      BuildContext context, String nroguia, String tipo, String cedula
-      //AssiggrListProvider listaGuiasAsignadas,
-      //BinGrAsignado listaBinGuiaAsignada
-      ) {
-    /* final listaGuiasServices =
-        Provider.of<DataGuiaBinServices>(context, listen: false); */
+      BuildContext context, String nroguia, String tipo, String cedula) {
     return showDialog(
         context: context,
         barrierDismissible: false,
@@ -99,7 +99,7 @@ class ExitPlantListScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'Desea Sincronizar  la Guía # $nroguia ?',
+                  'Desea Registrar Fec/Hora Guía # $nroguia ?',
                   style: const TextStyle(
                     fontSize: 17,
                   ),
@@ -146,6 +146,52 @@ class ExitPlantListScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: AppTheme.second),
                   ))
+            ],
+          );
+        });
+  }
+
+  Future<dynamic> _showDialogMsg(BuildContext context, String mensaje) {
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            elevation: 5,
+            backgroundColor: Colors.grey.shade200,
+            title: const Text(
+              'Registro Guía Salida Planta ',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: AppTheme.primary),
+            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  mensaje,
+                  style: const TextStyle(
+                    fontSize: 17,
+                  ),
+                ),
+              ],
+            ),
+            //se agrega para hacer que presione un boton
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'Ok',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.primary),
+                  )),
             ],
           );
         });

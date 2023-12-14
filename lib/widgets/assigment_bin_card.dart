@@ -12,7 +12,8 @@ class AssigmentBinCard extends StatelessWidget {
   //const AssigmentBinCard({Key? key}) : super(key: key);
   //final Product product;
   //final bool sincronizado = true;
-  final double tamanio = 12;
+  final double tamanio = 11;
+  final double tamanioTitulo = 12;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,7 +39,7 @@ class AssigmentBinCard extends StatelessWidget {
                     Text(
                       '#Guìa :',
                       style: TextStyle(
-                          fontSize: tamanio,
+                          fontSize: tamanioTitulo,
                           color: AppTheme.second,
                           fontWeight: FontWeight.bold),
                     ),
@@ -56,7 +57,7 @@ class AssigmentBinCard extends StatelessWidget {
                     Text(
                       'KG',
                       style: TextStyle(
-                          fontSize: tamanio,
+                          fontSize: tamanioTitulo,
                           color: AppTheme.second,
                           fontWeight: FontWeight.bold),
                     ),
@@ -67,7 +68,7 @@ class AssigmentBinCard extends StatelessWidget {
                     Text(
                       'Placa :',
                       style: TextStyle(
-                          fontSize: tamanio,
+                          fontSize: tamanioTitulo,
                           color: AppTheme.second,
                           fontWeight: FontWeight.bold),
                     ),
@@ -146,7 +147,7 @@ class AssigmentBinCard extends StatelessWidget {
                     Text(
                       'Fecha :',
                       style: TextStyle(
-                          fontSize: tamanio,
+                          fontSize: tamanioTitulo,
                           color: AppTheme.second,
                           fontWeight: FontWeight.bold),
                     ),
@@ -157,7 +158,7 @@ class AssigmentBinCard extends StatelessWidget {
                     Text(
                       '# Pisc :',
                       style: TextStyle(
-                          fontSize: tamanio,
+                          fontSize: tamanioTitulo,
                           color: AppTheme.second,
                           fontWeight: FontWeight.bold),
                     ),
@@ -168,7 +169,7 @@ class AssigmentBinCard extends StatelessWidget {
                     Text(
                       'F/H Reg :',
                       style: TextStyle(
-                          fontSize: tamanio,
+                          fontSize: tamanioTitulo,
                           color: AppTheme.second,
                           fontWeight: FontWeight.bold),
                     ),
