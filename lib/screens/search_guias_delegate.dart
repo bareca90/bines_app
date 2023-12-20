@@ -1,4 +1,6 @@
 import 'package:bines_app/providers/providers.dart';
+import 'package:bines_app/services/services.dart';
+import 'package:bines_app/themes/app_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/widgets.dart';
@@ -15,7 +17,7 @@ class SearchGuiasDelegate extends SearchDelegate {
           onPressed: () {
             query = '';
 
-            print('Impresion ${listaGuiasAsignadas.asignados[0].nroguia}');
+            /* print('Impresion ${listaGuiasAsignadas.asignados[0].nroguia}'); */
           },
           icon: const Icon(Icons.close))
     ];
@@ -84,15 +86,28 @@ class _ListDetailSearch extends StatelessWidget {
           );
         } */
         itemBuilder: (BuildContext context, int indice) => GestureDetector(
-            // TODO Aqui navego a la pantalla de Productos
             onTap: () {
               listaGuiasAsignadas.guiaSeleccionada =
                   listaGuiasAsignadas.asignados[indice].copy();
 
               final nroguia = _filtro[indice].nroguia;
-              final listaBinGuiaAsignada =
+              final tipo = _filtro[indice].tipoproceso;
+              final cedula = _filtro[indice].cedula;
+              final activo = _filtro[indice].activo;
+              if (activo == 1) {
+                _showDialogInsertBines(
+                  context,
+                  nroguia,
+                  tipo,
+                  cedula,
+                );
+              } else {
+                _showDialogMsg(context,
+                    'Lo Sentimos la Guía Seleccionada ya posee Registro de fecha y hora ');
+              }
+              /* final listaBinGuiaAsignada =
                   Provider.of<BinGrAsignado>(context, listen: false);
-              listaBinGuiaAsignada.cargarBinAsignadas(nroguia);
+              listaBinGuiaAsignada.cargarBinAsignadas(nroguia); */
 
               //Aqui se Comenta la Invocación a la pantalla de Bines
               /* Navigator.pushReplacementNamed(context, 'asigbin'); */
@@ -102,5 +117,125 @@ class _ListDetailSearch extends StatelessWidget {
               asignados: _filtro[indice],
               //product: productsServices.productos[indice],
             )));
+  }
+
+  Future<dynamic> _showDialogInsertBines(
+      BuildContext context, String nroguia, String tipo, String cedula) {
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            elevation: 5,
+            backgroundColor: Colors.grey.shade200,
+            title: const Text(
+              'Registro Guía Salida Planta ',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: AppTheme.primary),
+            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  'Desea Registrar Fec/Hora Guía # $nroguia ?',
+                  style: const TextStyle(
+                    fontSize: 17,
+                  ),
+                ),
+              ],
+            ),
+            //se agrega para hacer que presione un boton
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Provider.of<DataGuiaBinServices>(context, listen: false)
+                        .insertGuiaProcesada(
+                            nroguia, 'RGUIAPESCA', tipo, cedula);
+
+                    /*  listaGuiasServices.insertBinGuias(listaBinGuiaAsignada);
+                    if (listaGuiasServices.isLoading) {
+                      const LoadingScreen();
+                    }
+                    listaBinGuiaAsignada.cargarBinAsignadas(
+                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
+
+                    /* listaBinGuiaAsignada.cargarBinAsignadas(
+                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
+                    /* listaGuiasServices.cargarBinAsignadasServ(
+                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
+
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'Ok',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.primary),
+                  )),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'Cancelar',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.second),
+                  ))
+            ],
+          );
+        });
+  }
+
+  Future<dynamic> _showDialogMsg(BuildContext context, String mensaje) {
+    return showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) {
+          return AlertDialog(
+            elevation: 5,
+            backgroundColor: Colors.grey.shade200,
+            title: const Text(
+              'Registro Guía Salida Planta ',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: AppTheme.primary),
+            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  mensaje,
+                  style: const TextStyle(
+                    fontSize: 17,
+                  ),
+                ),
+              ],
+            ),
+            //se agrega para hacer que presione un boton
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'Ok',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: AppTheme.primary),
+                  )),
+            ],
+          );
+        });
   }
 }

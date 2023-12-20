@@ -350,12 +350,12 @@ class DBProvider {
   //----------------------------------
   //Actualizar Tabla TiempoGuias para saber que esta sincronizada
   //----------------------------------
-  Future actualizaGuiaSincronizada(
-      String nroguia, int activo, int sincronizado, String tipo) async {
+  Future actualizaGuiaSincronizada(String nroguia, int activo, int sincronizado,
+      String tipo, String fecha) async {
     // Get a reference to the database.
     final db = await databaseRead;
-    final actualizado = await db.update(
-        'TiempoGuias', {'sincronizado': sincronizado, 'activo': activo},
+    final actualizado = await db.update('TiempoGuias',
+        {'sincronizado': sincronizado, 'activo': activo, 'fechahorareg': fecha},
         where: 'nroguia = ? and tipoproceso = ? ', whereArgs: [nroguia, tipo]);
     return actualizado;
   }

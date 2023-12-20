@@ -15,8 +15,6 @@ class ExitPlantListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /* final listaGuiasAsignadas =
-        Provider.of<AssiggrListProvider>(context, listen: false); */
     final listaGuiasServices = Provider.of<DataGuiasDayServices>(context);
     const String cedula = '1234567890';
     const String tipo = 'GUIAPESCAD'; //Obtener Guias del Día
@@ -62,12 +60,6 @@ class ExitPlantListScreen extends StatelessWidget {
                     _showDialogMsg(context,
                         'Lo Sentimos la Guía Seleccionada ya posee Registro de fecha y hora ');
                   }
-
-                  //Se COmenta esta Linea que invocaba a la pantalla para registrar bines por guias
-                  /* final listaBinGuiaAsignada =
-                      Provider.of<BinGrAsignado>(context, listen: false);
-                  listaBinGuiaAsignada.cargarBinAsignadas(nroguia);
-                  Navigator.pushNamed(context, 'asigbin'); */
                 },
                 child: AssigmentBinCard(
                   asignados: listaGuiasAsignadas.asignados[indice],

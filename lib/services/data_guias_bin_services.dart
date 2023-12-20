@@ -3,6 +3,7 @@ import 'dart:convert';
 /* import 'package:bines_app/models/models.dart'; */
 import 'package:bines_app/providers/providers.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
 class DataGuiaBinServices extends ChangeNotifier {
@@ -41,8 +42,7 @@ class DataGuiaBinServices extends ChangeNotifier {
         final List<dynamic> decodedResp = json.decode(response.body);
         final dynamic cod = decodedResp[0]['codmsg'];
         if (cod == 200) {
-          final binesAct = await BinGrAsignado()
-              .updateBinesSincronizados(nroguia, 0, 1, nrobin);
+          await BinGrAsignado().updateBinesSincronizados(nroguia, 0, 1, nrobin);
 
           notifyListeners();
         } else {
@@ -59,8 +59,8 @@ class DataGuiaBinServices extends ChangeNotifier {
   //listaBinGuiaAsignada.cargarBinAsignadas(nroguia);
   Future insertGuiaProcesada(
       String nroguia, String opcion, String tipo, String usuario) async {
-    //TODO : Validar que exista conexion con el api
     //si fue sincronizado no lo considero
+    //TODO : Validar que exista conexion con el api
     final response = await http.post(
         //10.20.4.173:8077 Servidor Desarrollo
         Uri.parse('http://10.20.4.173:8077/api-app-control-time/regtiempoguia'),
@@ -75,14 +75,13 @@ class DataGuiaBinServices extends ChangeNotifier {
 
     final List<dynamic> decodedResp = json.decode(response.body);
     final dynamic cod = decodedResp[0]['codmsg'];
-    print('Datos del json devuelto en el api $decodedResp');
+    final String fecha = DateFormat('dd/MM/yyyy HH:mm').format(DateTime.now());
+    /* print('Datos del json devuelto en el api $decodedResp'); */
     if (cod == 200) {
-      final binesAct =
-          await BinGrAsignado().updateGuiaSincronizada(nroguia, 0, 1, tipo);
-
+      await BinGrAsignado().updateGuiaSincronizada(nroguia, 0, 1, tipo, fecha);
       notifyListeners();
     } else {
-      print('Cod Error ');
+      /* print('Cod Error '); */
     }
 
     isLoading = false;

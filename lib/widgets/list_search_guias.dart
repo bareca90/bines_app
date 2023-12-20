@@ -17,7 +17,7 @@ class ListSearchGuias extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: 5, bottom: 5),
         width: double.infinity,
-        height: 60,
+        height: 80,
         decoration: _cardBorders(),
         child: Row(
           children: [
@@ -61,6 +61,13 @@ class ListSearchGuias extends StatelessWidget {
                           color: AppTheme.second,
                           fontWeight: FontWeight.bold),
                     ),
+                    Text(
+                      'Placa :',
+                      style: TextStyle(
+                          fontSize: tamanio,
+                          color: AppTheme.second,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
               ),
@@ -98,6 +105,13 @@ class ListSearchGuias extends StatelessWidget {
                     ), */
                     Text(
                       asignados.fecha.toString(),
+                      style: TextStyle(
+                          fontSize: tamanio,
+                          color: AppTheme.primary,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      asignados.placa.toString(),
                       style: TextStyle(
                           fontSize: tamanio,
                           color: AppTheme.primary,
