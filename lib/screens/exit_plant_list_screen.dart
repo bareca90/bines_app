@@ -1,11 +1,8 @@
 import 'package:bines_app/providers/providers.dart';
 import 'package:bines_app/screens/screens.dart';
-import 'package:bines_app/services/data_guias_day_services.dart';
 import 'package:bines_app/services/services.dart';
 import 'package:bines_app/themes/app_themes.dart';
 
-/* import 'package:bines_app/screens/search_guias_delegate.dart';
-import 'package:bines_app/services/services.dart'; */
 import 'package:bines_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,9 +12,10 @@ class ExitPlantListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listaGuiasServices = Provider.of<DataGuiasDayServices>(context);
     const String cedula = '1234567890';
     const String tipo = 'GUIAPESCAD'; //Obtener Guias del Día
+
+    /* Provider.of<DataGuiasDayServices>(context); */
     final listaGuiasAsignadas = Provider.of<AssiggrListProvider>(context);
     listaGuiasAsignadas.cargarGrAsignadas(cedula, tipo);
 
@@ -40,11 +38,7 @@ class ExitPlantListScreen extends StatelessWidget {
             //itemCount: productsServices.productos.length,
             itemCount: listaGuiasAsignadas.asignados.length,
             itemBuilder: (BuildContext context, int indice) => GestureDetector(
-                // TODO Aqui navego a la pantalla de Productos
                 onTap: () {
-                  /* productsServices.selectedProduct =
-                      productsServices.productos[indice].copy();
-                  Navigator.pushNamed(context, 'product'); */
                   listaGuiasAsignadas.guiaSeleccionada =
                       listaGuiasAsignadas.asignados[indice].copy();
 
@@ -105,18 +99,6 @@ class ExitPlantListScreen extends StatelessWidget {
                     Provider.of<DataGuiaBinServices>(context, listen: false)
                         .insertGuiaProcesada(
                             nroguia, 'RGUIAPESCA', tipo, cedula);
-
-                    /*  listaGuiasServices.insertBinGuias(listaBinGuiaAsignada);
-                    if (listaGuiasServices.isLoading) {
-                      const LoadingScreen();
-                    }
-                    listaBinGuiaAsignada.cargarBinAsignadas(
-                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
-
-                    /* listaBinGuiaAsignada.cargarBinAsignadas(
-                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
-                    /* listaGuiasServices.cargarBinAsignadasServ(
-                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
 
                     Navigator.pop(context);
                   },

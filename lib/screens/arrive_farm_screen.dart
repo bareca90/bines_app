@@ -15,16 +15,16 @@ class ArriveFarmListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listaGuiasServices = Provider.of<DataGuiasDayServices>(context);
     const String cedula = '1234567890';
-    const String tipo = 'GUIAPESCAD'; //Obtener Guias del Día
+    const String tipo = 'GUIALLEGGR'; //Obtener Guías Llegadas a Camaroneras
+
     final listaGuiasAsignadas = Provider.of<AssiggrListProvider>(context);
     listaGuiasAsignadas.cargarGrAsignadas(cedula, tipo);
 
     return Scaffold(
       body: Scaffold(
         appBar: AppBar(
-          title: const Text('Llegada a Granja'),
+          title: const Text('Llegada a Camaronera'),
           actions: [
             IconButton(
                 onPressed: () {
@@ -42,9 +42,6 @@ class ArriveFarmListScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int indice) => GestureDetector(
                 // TODO Aqui navego a la pantalla de Productos
                 onTap: () {
-                  /* productsServices.selectedProduct =
-                      productsServices.productos[indice].copy();
-                  Navigator.pushNamed(context, 'product'); */
                   listaGuiasAsignadas.guiaSeleccionada =
                       listaGuiasAsignadas.asignados[indice].copy();
 
@@ -63,7 +60,6 @@ class ArriveFarmListScreen extends StatelessWidget {
                 },
                 child: AssigmentBinCard(
                   asignados: listaGuiasAsignadas.asignados[indice],
-                  //product: productsServices.productos[indice],
                 ))),
       ),
     );
@@ -79,7 +75,7 @@ class ArriveFarmListScreen extends StatelessWidget {
             elevation: 5,
             backgroundColor: Colors.grey.shade200,
             title: const Text(
-              'Registro Guía Salida Planta ',
+              'Registro Guía Llegada Camaronera ',
               style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -102,21 +98,10 @@ class ArriveFarmListScreen extends StatelessWidget {
             actions: [
               TextButton(
                   onPressed: () {
+                    //Modificar para que sea el estado Registro de Llegada Granja
                     Provider.of<DataGuiaBinServices>(context, listen: false)
                         .insertGuiaProcesada(
-                            nroguia, 'RGUIAPESCA', tipo, cedula);
-
-                    /*  listaGuiasServices.insertBinGuias(listaBinGuiaAsignada);
-                    if (listaGuiasServices.isLoading) {
-                      const LoadingScreen();
-                    }
-                    listaBinGuiaAsignada.cargarBinAsignadas(
-                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
-
-                    /* listaBinGuiaAsignada.cargarBinAsignadas(
-                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
-                    /* listaGuiasServices.cargarBinAsignadasServ(
-                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
+                            nroguia, 'RGUIALLEGG', tipo, cedula);
 
                     Navigator.pop(context);
                   },

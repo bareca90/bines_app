@@ -57,19 +57,28 @@ class HomeScreen extends StatelessWidget {
                 Provider.of<RegisteredGuiasProvider>(context, listen: false);
             final listaBinGuiaReg =
                 Provider.of<RegisteredBinGuiasProvider>(context, listen: false);
+            /*
+             * Servicio que invoca al provider que refresca los datos de las pantallas
+             */
+            final ServicesProviderCMP dataGuiasDayServices =
+                Provider.of<ServicesProviderCMP>(context, listen: false);
+
             switch (index) {
               //-------------------------
               //Registro de Bines
               //-------------------------
-              case 0: // Registro de Bines
+              case 0: // Registro Salida Planta
+                dataGuiasDayServices.llamarApiGuiasRegistradas(
+                    '', 'GUIAPESCAD', '1206702175');
+                break;
               //-------------------------
               //Registro Salida de Planta
               //-------------------------
               case 1: //Opcion de Registro Salida de Planta
-                listaGuiasServices.llamarApiGuiasRegistradas('OGCE',
-                    'RSP'); //Obtiene Guias Cerradas en base a el parametro que se le envia
-                listadoGR.cargarGrRegistradas('RSP'); //Regitro Salida Planta
+                dataGuiasDayServices.llamarApiGuiasRegistradas(
+                    '', 'GUIALLEGGR', '1206702175');
                 break;
+
               //-------------------------
               //Registro de Llegada Granaja
               //-------------------------

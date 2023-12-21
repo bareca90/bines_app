@@ -105,12 +105,6 @@ class _ListDetailSearch extends StatelessWidget {
                 _showDialogMsg(context,
                     'Lo Sentimos la Guía Seleccionada ya posee Registro de fecha y hora ');
               }
-              /* final listaBinGuiaAsignada =
-                  Provider.of<BinGrAsignado>(context, listen: false);
-              listaBinGuiaAsignada.cargarBinAsignadas(nroguia); */
-
-              //Aqui se Comenta la Invocación a la pantalla de Bines
-              /* Navigator.pushReplacementNamed(context, 'asigbin'); */
             },
             child: ListSearchGuias(
               /* asignados: listaGuiasAsignadas.asignados[indice], */
@@ -155,18 +149,6 @@ class _ListDetailSearch extends StatelessWidget {
                     Provider.of<DataGuiaBinServices>(context, listen: false)
                         .insertGuiaProcesada(
                             nroguia, 'RGUIAPESCA', tipo, cedula);
-
-                    /*  listaGuiasServices.insertBinGuias(listaBinGuiaAsignada);
-                    if (listaGuiasServices.isLoading) {
-                      const LoadingScreen();
-                    }
-                    listaBinGuiaAsignada.cargarBinAsignadas(
-                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
-
-                    /* listaBinGuiaAsignada.cargarBinAsignadas(
-                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
-                    /* listaGuiasServices.cargarBinAsignadasServ(
-                        listaGuiasAsignadas.guiaSeleccionada.nroguia); */
 
                     Navigator.pop(context);
                   },

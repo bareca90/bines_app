@@ -1,7 +1,7 @@
 import 'dart:convert' as convert;
 /* import 'dart:convert'; */
 /* import 'dart:html'; */
-import 'package:bines_app/models/models.dart';
+/* import 'package:bines_app/models/models.dart'; */
 import 'package:bines_app/providers/providers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -17,10 +17,11 @@ class DataGuiasDayServices extends ChangeNotifier {
     isLoading = true;
     //notificamos  a otro cualquier otro widget que se desea
     notifyListeners();
+
     final queryParameters = {
-      "nroguia": "",
-      "opcion": "GUIAPESCAD",
-      "usuario": ""
+      "nroguia": '',
+      "opcion": 'GUIAPESCAD',
+      "usuario": ''
     };
     final uri = Uri.http('10.20.4.173:8077',
         '/api-app-control-time/obtenerguias', queryParameters);

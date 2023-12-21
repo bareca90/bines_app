@@ -21,6 +21,7 @@ class AppsState extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => DataGuiaBinServices()),
         ChangeNotifierProvider(create: (_) => RegisteredGuiasProvider()),
         ChangeNotifierProvider(create: (_) => ServicesProvider()),
+        ChangeNotifierProvider(create: (_) => ServicesProviderCMP()),
         ChangeNotifierProvider(create: (_) => RegisteredBinGuiasProvider()),
       ],
       child: const MyApp(),

@@ -1,4 +1,3 @@
-import 'package:bines_app/models/models.dart';
 import 'package:bines_app/providers/providers.dart';
 import 'package:flutter/material.dart';
 
