@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
         'arrivefarm': (_) =>
             const ArriveFarmListScreen(), // Lista de Guias - Registro Llegada a Granja
         'closebin': (_) =>
-            const CloseBinListScreen(), // Lista de Guias - Cierre de Bines
+            const MovilListoCMP(), // Lista de Guias - Cierre de Bines
         'exitfarm': (_) =>
             const ExitFarmListScreen(), //Lista Guia Salida de Granja
         'arriveplant': (_) =>

@@ -43,7 +43,7 @@ class AppRoutes {
     MenuOptions(
         route: 'closebin',
         name: 'Registrar Móvil Listo',
-        screen: const CloseBinListScreen(),
+        screen: const MovilListoCMP(),
         icon: Icons.propane_tank),
     MenuOptions(
         route: 'exitfarm',

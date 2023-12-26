@@ -80,16 +80,19 @@ class HomeScreen extends StatelessWidget {
                 break;
 
               //-------------------------
-              //Registro de Llegada Granaja
+              //Registro de Móvil Listo
               //-------------------------
               case 2: //Opcion de  Registro Llegada Granja
-                //-------------------------
-                //Envio Datos al APi
-                //-------------------------
-                //-------------------------
-                //1.- Cargo los datos dato que s eenviaran  hacia la bd mediante el api
-                //-------------------------
-                listadoGR.cargarGrRegistradas('RLG'); //Regitro Salida Planta
+                dataGuiasDayServices.llamarApiGuiasRegistradas(
+                    '', 'GMOVILLIST', '1206702175');
+                break;
+              //-------------------------
+              //Envio Datos al APi
+              //-------------------------
+              //-------------------------
+              //1.- Cargo los datos dato que s eenviaran  hacia la bd mediante el api
+              //-------------------------
+              /* listadoGR.cargarGrRegistradas('RLG'); //Regitro Salida Planta
                 //-------------------------
                 //2.-  Envio los datos para que sean insertados mediante el api
                 // Envio PLG como opcion para que se pueda sincronizar
@@ -108,7 +111,7 @@ class HomeScreen extends StatelessWidget {
                 //Cargo los datos
                 //-------------------------
                 listadoGR.cargarGrRegistradas('RLG'); //Regitro Salida Planta
-                break;
+                break; */
               //-------------------------
               //Registro Cierre de Bin
               //-------------------------
