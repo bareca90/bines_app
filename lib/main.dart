@@ -51,9 +51,9 @@ class MyApp extends StatelessWidget {
         'closebin': (_) =>
             const MovilListoCMP(), // Lista de Guias - Cierre de Bines
         'exitfarm': (_) =>
-            const ExitFarmListScreen(), //Lista Guia Salida de Granja
+            const SalidaGranjaCMP(), //Lista Guia Salida de Granja
         'arriveplant': (_) =>
-            const ArrivePlantListScreen(), //Lista Guia  - Llegada a planta
+            const LlegadaPlantaCMP(), //Lista Guia  - Llegada a planta
         /*  'receptionbin': (_) =>
             const ReceptionListScreen(), //Lista Guias Llegada Recepcion
         'receivebin': (_) =>

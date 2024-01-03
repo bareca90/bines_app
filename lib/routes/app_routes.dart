@@ -48,12 +48,12 @@ class AppRoutes {
     MenuOptions(
         route: 'exitfarm',
         name: 'Registrar Salida Granja',
-        screen: const ExitFarmListScreen(),
+        screen: const SalidaGranjaCMP(),
         icon: Icons.assignment_return_rounded),
     MenuOptions(
         route: 'arriveplant',
         name: 'Registrar Llegada a Planta',
-        screen: const ArrivePlantListScreen(),
+        screen: const LlegadaPlantaCMP(),
         icon: Icons.factory),
     /* MenuOptions(
         route: 'receptionbin',

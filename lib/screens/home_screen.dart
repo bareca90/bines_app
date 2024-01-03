@@ -51,12 +51,12 @@ class HomeScreen extends StatelessWidget {
                 builder: (context) => const ListView1Screen());
             Navigator.push(context, route);
             */
-            final listaGuiasServices =
+            /* final listaGuiasServices =
                 Provider.of<ServicesProvider>(context, listen: false);
             final listadoGR =
                 Provider.of<RegisteredGuiasProvider>(context, listen: false);
             final listaBinGuiaReg =
-                Provider.of<RegisteredBinGuiasProvider>(context, listen: false);
+                Provider.of<RegisteredBinGuiasProvider>(context, listen: false); */
             /*
              * Servicio que invoca al provider que refresca los datos de las pantallas
              */
@@ -116,16 +116,22 @@ class HomeScreen extends StatelessWidget {
               //Registro Cierre de Bin
               //-------------------------
               case 3:
-                listadoGR.cargarGrRegistradas('RCB');
-                break; //Regitro Salida Planta
+                /* listadoGR.cargarGrRegistradas('RCB');
+                break; //Regitro Salida Planta */
+                dataGuiasDayServices.llamarApiGuiasRegistradas(
+                    '', 'GUIASALGRA', '1206702175');
+                break; //Registro de Salida de Granja
               //-------------------------
               //Registro Salida de Granja
               //-------------------------
               case 4:
-                //-------------------------
-                //1.- Cargo los datos dato que s eenviaran  hacia la bd mediante el api
-                //-------------------------
-                listadoGR.cargarGrRegistradas('RSG'); //Regitro Salida Planta
+                dataGuiasDayServices.llamarApiGuiasRegistradas(
+                    '', 'GUIALLEGPL', '1206702175');
+                break; //Registro de Salida de Granja
+              //-------------------------
+              //1.- Cargo los datos dato que s eenviaran  hacia la bd mediante el api
+              //-------------------------
+              /* listadoGR.cargarGrRegistradas('RSG'); //Regitro Salida Planta
                 //-------------------------
                 //2.-  Envio los datos para que sean insertados mediante el api
                 // Envio PLG como opcion para que se pueda sincronizar
@@ -137,15 +143,15 @@ class HomeScreen extends StatelessWidget {
                 //3.- Obtengo los datos de los datos insertaddos
                 //-------------------------
                 listadoGR.cargarGrRegistradas('RSG');
-                break; //Regitro Salida Planta
+                break; //Regitro Salida Planta */
               //-------------------------
               //Registro Llegada Planta
               //-------------------------
               case 5:
-                //-------------------------
-                //1.- Cargo los datos dato que s eenviaran  hacia la bd mediante el api
-                //-------------------------
-                listadoGR.cargarGrRegistradas('RLP'); //Regitro Salida Planta
+              //-------------------------
+              //1.- Cargo los datos dato que s eenviaran  hacia la bd mediante el api
+              //-------------------------
+              /* listadoGR.cargarGrRegistradas('RLP'); //Regitro Salida Planta
                 //-------------------------
                 //2.-  Envio los datos para que sean insertados mediante el api
                 // Envio PLG como opcion para que se pueda sincronizar
@@ -157,7 +163,7 @@ class HomeScreen extends StatelessWidget {
                 //3.- Obtengo los datos de los datos insertaddos
                 //-------------------------
                 listadoGR.cargarGrRegistradas('RLP');
-                break; //Regitro Salida Planta
+                break; //Regitro Salida Planta */
               //-------------------------
               //Registro Llegada Recepcion
               //-------------------------
@@ -165,7 +171,7 @@ class HomeScreen extends StatelessWidget {
                 //-------------------------
                 //1.- Cargo los datos dato que s eenviaran  hacia la bd mediante el api
                 //-------------------------
-                listadoGR.cargarGrRegistradas('RLR'); //Regitro Salida Planta
+                /* listadoGR.cargarGrRegistradas('RLR'); //Regitro Salida Planta
                 //-------------------------
                 //2.-  Envio los datos para que sean insertados mediante el api
                 // Envio PLG como opcion para que se pueda sincronizar
@@ -176,14 +182,14 @@ class HomeScreen extends StatelessWidget {
                 //-------------------------
                 //3.- Obtengo los datos de los datos insertaddos
                 //-------------------------
-                listadoGR.cargarGrRegistradas('RLR');
+                listadoGR.cargarGrRegistradas('RLR'); */
                 break; //Regitro Salida Planta
               //-------------------------
               //Registro Recibido Recepcion
               //-------------------------
               case 7:
-                listadoGR.cargarGrRegistradas('RRR');
-                break; //Regitro SRecibido Recepcion(Volte Bines)
+              /* listadoGR.cargarGrRegistradas('RRR');
+                break; //Regitro SRecibido Recepcion(Volte Bines) */
             }
             Navigator.pushNamed(context, menuOptions[index].route);
           },
