@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 //class DataGuiasRegServices extends ChangeNotifier {
 class DataGuiasRegServicesCMP {
   List<RegisteredGuias> listadoGrReg = [];
-  final serverport = '10.20.4.173:8077'; //Servidor Desarrollo
+  //final serverport = '10.20.4.173:8077'; //Servidor Desarrollo
+  final serverport = '10.100.120.35:8077'; //Servidor Produccion
   bool isLoading = true;
   final List<AssiggrModel> listadoGr = [];
   bool insertados = false;
@@ -24,7 +25,7 @@ class DataGuiasRegServicesCMP {
       "opcion": opcion,
       "usuario": usuario
     };
-    final uri = Uri.http('10.20.4.173:8077',
+    final uri = Uri.http('10.100.120.35:8077',
         '/api-app-control-time/obtenerguias', queryParameters);
     final responseGuias = await http.get(
       uri,

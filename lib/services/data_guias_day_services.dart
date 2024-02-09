@@ -23,7 +23,7 @@ class DataGuiasDayServices extends ChangeNotifier {
       "opcion": 'GUIAPESCAD',
       "usuario": ''
     };
-    final uri = Uri.http('10.20.4.173:8077',
+    final uri = Uri.http('10.100.120.35:8077',
         '/api-app-control-time/obtenerguias', queryParameters);
     final responseGuias = await http.get(
       uri,
