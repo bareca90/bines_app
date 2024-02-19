@@ -36,10 +36,11 @@ class DataGuiasRegServicesCMP {
     /* final List<dynamic> listGuiasBinMap =convert.jsonDecode(responseGuias.body); */
     /* final response = await http.get(Uri.parse(_baseUrl)); */
     final List<dynamic> listguiasMap = convert.jsonDecode(responseGuias.body);
+    await DBProvider.db.borrarGuiasPesca('', opcion);
+    print("Ingreso a Borrrar  =>> $opcion ");
     if (listguiasMap.isNotEmpty) {
       //Borramos los datos de las tablas no sincronziadas
       //TODO : Borrar los datos de las guias no sincronizadas
-      await DBProvider.db.borrarGuiasPesca('', opcion);
       //Recorremos el Json y Realizamos el Insert
       for (Map<String, dynamic> guias in listguiasMap) {
         /*
