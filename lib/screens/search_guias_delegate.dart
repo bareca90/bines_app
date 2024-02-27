@@ -146,9 +146,28 @@ class _ListDetailSearch extends StatelessWidget {
             actions: [
               TextButton(
                   onPressed: () {
+                    String tiporegistro = "";
+                    switch (tipo) {
+                      case 'GUIAPESCAD':
+                        tiporegistro = 'RGUIAPESCA';
+                        break;
+                      case 'GUIALLEGGR':
+                        tiporegistro = 'RGUIALLEGG';
+                        break;
+                      case 'GMOVILLIST':
+                        tiporegistro = 'RMOVILLIST';
+                        break;
+                      case 'GUIASALGRA':
+                        tiporegistro = 'RGUIASAGRA';
+                        break;
+                      case 'GUIALLEGPL':
+                        tiporegistro = 'RGUIALLEGP';
+                        break;
+                    }
+                    /* print('Search Delegate Tipo $tiporegistro'); */
                     Provider.of<DataGuiaBinServices>(context, listen: false)
                         .insertGuiaProcesada(
-                            nroguia, 'RGUIAPESCA', tipo, cedula);
+                            nroguia, tiporegistro, tipo, cedula);
 
                     Navigator.pop(context);
                   },
